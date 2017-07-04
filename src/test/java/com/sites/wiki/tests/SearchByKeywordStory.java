@@ -1,4 +1,4 @@
-package com.features.search;
+package com.sites.wiki.tests;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Issue;
@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
-import com.steps.serenity.EndUserSteps;
+import com.sites.wiki.steps.EndUserSteps;
 
 @RunWith(SerenityRunner.class)
 public class SearchByKeywordStory {

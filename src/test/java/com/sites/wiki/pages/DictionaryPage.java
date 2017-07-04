@@ -1,4 +1,4 @@
-package com.pages;
+package com.sites.wiki.pages;
 
 import ch.lambdaj.function.convert.Converter;
 import net.serenitybdd.core.annotations.findby.FindBy;
