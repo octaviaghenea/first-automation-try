@@ -14,7 +14,8 @@ public class CreateScriptsPage extends PageObject {
 	@FindBy(id = "name")
 	private WebElementFacade nameInput;
 
-	@FindBy(css = "html #c76dee6e-aaee-43a6-90f5-5023e69db8b4_ifr")
+	@FindBy(css = "body")
+	// @FindBy(css = "html #c76dee6e-aaee-43a6-90f5-5023e69db8b4_ifr")
 	private WebElementFacade contentInput;
 
 	@FindBy(css = ".Dropdown-root")
@@ -34,30 +35,43 @@ public class CreateScriptsPage extends PageObject {
 	}
 
 	public void enterContent(String content) {
-		
-		
-		
-		
-		
+
+		WebElement iframeElement = getDriver().findElement(By.cssSelector("iframe"));
+		getDriver().switchTo().frame(iframeElement);
+
 		contentInput.type(content);
+		getDriver().switchTo().defaultContent();
 	}
 
-	public void selectDisplay() {
-		//element(displayContainer).isEnabled();
-		element(displayContainer).submit();
-		
-		List<WebElement> displayOptions = displayContainer.findElements(By.tagName("class"));
-		for (WebElement displayOptionNow : displayOptions) {
-			
-			String displayOptionText = displayContainer.getText();
-			System.out.println("Display options are: " + displayOptionText);
-			
-			if("Enable".equals(displayOptionNow.getText())) 
-				displayOptionNow.click();
-			
+	public void selectDisplay(String labelValue) {
+
+		element(By.cssSelector("div.Dropdown-placeholder")).click();
+
+		List<WebElement> optionsList = getDriver().findElements(By.cssSelector(".Dropdown-option"));
+
+		for (WebElement webElement : optionsList) {
+			if (webElement.getText().contains(labelValue)) {
+				webElement.click();
+				break;
+			}
+			System.out.println(webElement.getText());
 		}
-		
-		//element(displayContainer).selectByVisibleText("Enable");
+		// element(displayContainer).isEnabled();
+		// element(displayContainer).submit();
+		//
+		// List<WebElement> displayOptions =
+		// displayContainer.findElements(By.tagName("class"));
+		// for (WebElement displayOptionNow : displayOptions) {
+		//
+		// String displayOptionText = displayContainer.getText();
+		// System.out.println("Display options are: " + displayOptionText);
+		//
+		// if("Enable".equals(displayOptionNow.getText()))
+		// displayOptionNow.click();
+		//
+		// }
+
+		// element(displayContainer).selectByVisibleText("Enable");
 	}
 
 	public void selectButton(String button) {

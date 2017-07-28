@@ -19,8 +19,8 @@ public class CreateScriptSteps {
 	}
 	
 	@Step
-	public void selectDisplay() {
-		createScriptsPage.selectDisplay();
+	public void selectDisplay(String label) {
+		createScriptsPage.selectDisplay(label);
 	}
 	
 	@Step
