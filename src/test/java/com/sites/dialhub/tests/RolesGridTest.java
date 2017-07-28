@@ -8,7 +8,8 @@ import org.openqa.selenium.WebDriver;
 
 import com.sites.dialhub.steps.LoginSteps;
 import com.sites.dialhub.steps.dashboard.DashboardSteps;
-import com.sites.dialhub.tools.DashboardModel;
+import com.sites.dialhub.steps.dashboard.RolesGridSteps;
+import com.sites.dialhub.tools.RolesModel;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
@@ -16,7 +17,7 @@ import net.thucydides.core.annotations.Steps;
 
 @RunWith(SerenityRunner.class)
 
-public class DashboardTest {
+public class RolesGridTest {
 
 	@Managed(uniqueSession = true)
 	public WebDriver webdriver;
@@ -25,22 +26,29 @@ public class DashboardTest {
 	public LoginSteps loginSteps;
 	@Steps
 	public DashboardSteps dashboardSteps;
+	@Steps
+	public RolesGridSteps rolesGridSteps;
 
 	@Test
-	public void listDashboardInfo() {
+	public void listRoles() {
 		loginSteps.openDialHub("https://dialhub-staging.urnbag.com");
 		loginSteps.enterUsername("admin");
 		loginSteps.enterPassword("pepsicola");
 		loginSteps.hitSignInButton();
 
-		List<DashboardModel> userList = dashboardSteps.printList();
+		rolesGridSteps.hoverMenuNavigation("Configuration");
+		rolesGridSteps.hoverMenuNavigation("Roles");
+		rolesGridSteps.selectMenuItem("Roles");
 
-		for (DashboardModel userNow : userList) {
+		List<RolesModel> rolesList = rolesGridSteps.printRolesList();
 
-			System.out.println("data: " + userNow.getUserName() + " | " + userNow.getCallReason() + " | "
-					+ userNow.getCallDuration() + " | " + userNow.getDateTime());
+		for (RolesModel roleNow : rolesList) {
+
+			System.out.println("data: " + roleNow.getRoleID() + " | " + roleNow.getRoleName() + " | "
+					+ roleNow.getEditAction() + " | " + roleNow.getRemoveAction());
 
 		}
+
 	}
 
 }
