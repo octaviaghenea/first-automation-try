@@ -10,45 +10,33 @@ import com.sites.dialhub.tools.DashboardModel;
 
 import net.serenitybdd.core.pages.PageObject;
 
-public class UsersListPage extends PageObject {
+public class DashboardListPage extends PageObject {
 
 	public List<DashboardModel> printDashboardList() {
 
 		List<WebElement> usersList = getDriver().findElements(By.cssSelector("tbody tr"));
-		
-		List<DashboardModel> results = new ArrayList<DashboardModel>(); 
+		List<DashboardModel> results = new ArrayList<DashboardModel>();
 
-			
-		
 		for (WebElement userNow : usersList) {
-			
+
 			DashboardModel usersResults = new DashboardModel();
 
-		    String user = userNow.findElement(By.cssSelector("td:nth-child(2) pre")).getText();
+			String user = userNow.findElement(By.cssSelector("td:nth-child(2) pre")).getText();
 
 			String reason = userNow.findElement(By.cssSelector("td:nth-child(3) pre")).getText();
 
 			String callDuration = userNow.findElement(By.cssSelector("td:nth-child(4) pre")).getText();
 
 			String dateTime = userNow.findElement(By.cssSelector("td:nth-child(5) pre")).getText();
-			
+
 			usersResults.setUserName(user);
 			usersResults.setCallReason(reason);
 			usersResults.setCallDuration(callDuration);
 			usersResults.setDateTime(dateTime);
-			
+
 			results.add(usersResults);
 
-			
-//			System.out.println("name: " + users);
-//						
-//			System.out.println("reason: " + reason);
-//			
-//			System.out.println("call duration: " + callDuration);
-//			
-//			System.out.println("timeFrame: " + dateTime);
-		} 
-		
+		}
 
 		return results;
 

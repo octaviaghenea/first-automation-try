@@ -1,12 +1,14 @@
 package com.sites.dialhub.tests;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import com.sites.dialhub.steps.LoginSteps;
-import com.sites.dialhub.steps.dashboard.CreateButtonsSteps;
-import com.sites.dialhub.steps.dashboard.RolesGridSteps;
+import com.sites.dialhub.steps.configuration.CreateButtonsSteps;
+import com.sites.dialhub.steps.configuration.RolesGridSteps;
+import com.sites.dialhub.steps.configuration.UsersGridSteps;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
@@ -25,23 +27,36 @@ public class CreateButtonTest {
 	public RolesGridSteps rolesGridSteps;
 	@Steps
 	public CreateButtonsSteps createButtonSteps;
+	@Steps
+	public UsersGridSteps userGridSteps;
+
+	public String baseURL;
+	public String userName;
+	public String userPass;
+
+	public String menuNavigation;
+
+	@Before
+	public void dataSetup() {
+		baseURL = "https://dialhub-staging.urnbag.com";
+		userName = "admin";
+		userPass = "pepsicola";
+
+		menuNavigation = "Configuration > Buttons > Create button";
+	}
 
 	@Test
 	public void createButtons() {
-		loginSteps.openDialHub("https://dialhub-staging.urnbag.com");
-		loginSteps.enterUsername("admin");
-		loginSteps.enterPassword("pepsicola");
+		loginSteps.openDialHub(baseURL);
+		loginSteps.enterUsername(userName);
+		loginSteps.enterPassword(userPass);
 		loginSteps.hitSignInButton();
 
-		rolesGridSteps.hoverMenuNavigation("Configuration");
-		rolesGridSteps.hoverMenuNavigation("Buttons");
-		rolesGridSteps.selectMenuItem("Create button");
-
-		createButtonSteps.enterButtonName("Test button");
-		createButtonSteps.selectDependentButton("5. Order Cancellation");
+		userGridSteps.navigateToSiteLocation(menuNavigation);
+		createButtonSteps.enterButtonName("Test new");
 		createButtonSteps.selectDependentButton("6. Product Damaged");
-		createButtonSteps.selectProperty("Order No.");
-		createButtonSteps.selectProperty("PM No.");
+		createButtonSteps.selectProperties("Order No.");
+		createButtonSteps.selectProperties("PM No.");
 		createButtonSteps.hitSaveButton();
 	}
 

@@ -5,20 +5,20 @@ import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 
 public class LoginPage extends PageObject {
-	
-	@FindBy(id="username")
+
+	@FindBy(id = "username")
 	private WebElementFacade usernameInput;
-	
-	@FindBy(id="password")
+
+	@FindBy(id = "password")
 	private WebElementFacade passwordInput;
-	
+
 	@FindBy(css = "button[type]")
 	private WebElementFacade signinButton;
-	
-	public void enterUsername (String username) {
+
+	public void enterUsername(String username) {
 		usernameInput.type(username);
 	}
-	
+
 	public void enterPassword(String password) {
 		passwordInput.type(password);
 	}
@@ -26,5 +26,5 @@ public class LoginPage extends PageObject {
 	public void clickSignInButton() {
 		signinButton.click();
 	}
-	
+
 }

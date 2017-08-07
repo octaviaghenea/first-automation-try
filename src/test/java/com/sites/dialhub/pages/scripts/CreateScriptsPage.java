@@ -2,6 +2,7 @@ package com.sites.dialhub.pages.scripts;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -15,7 +16,6 @@ public class CreateScriptsPage extends PageObject {
 	private WebElementFacade nameInput;
 
 	@FindBy(css = "body")
-	// @FindBy(css = "html #c76dee6e-aaee-43a6-90f5-5023e69db8b4_ifr")
 	private WebElementFacade contentInput;
 
 	@FindBy(css = ".Dropdown-root")
@@ -36,6 +36,7 @@ public class CreateScriptsPage extends PageObject {
 
 	public void enterContent(String content) {
 
+		waitABit(3000);
 		WebElement iframeElement = getDriver().findElement(By.cssSelector("iframe"));
 		getDriver().switchTo().frame(iframeElement);
 
@@ -56,22 +57,6 @@ public class CreateScriptsPage extends PageObject {
 			}
 			System.out.println(webElement.getText());
 		}
-		// element(displayContainer).isEnabled();
-		// element(displayContainer).submit();
-		//
-		// List<WebElement> displayOptions =
-		// displayContainer.findElements(By.tagName("class"));
-		// for (WebElement displayOptionNow : displayOptions) {
-		//
-		// String displayOptionText = displayContainer.getText();
-		// System.out.println("Display options are: " + displayOptionText);
-		//
-		// if("Enable".equals(displayOptionNow.getText()))
-		// displayOptionNow.click();
-		//
-		// }
-
-		// element(displayContainer).selectByVisibleText("Enable");
 	}
 
 	public void selectButton(String button) {
@@ -99,5 +84,15 @@ public class CreateScriptsPage extends PageObject {
 
 	public void hitCancelButton() {
 		cancelButton.click();
+	}
+
+	public void verifySuccessMessage() throws InterruptedException {
+		String actual_message = getDriver().findElement(By.cssSelector(".messagesReact p.message-text")).getText();
+		Thread.sleep(2000);
+		System.out.println("message is:" + actual_message);
+		String expected_message = "The script was created with success.";
+		// System.out.println("Error is: " + expected_message);
+		Assert.assertEquals(actual_message, expected_message);
+
 	}
 }

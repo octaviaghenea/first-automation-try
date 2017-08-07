@@ -1,13 +1,14 @@
 package com.sites.dialhub.tests;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import com.sites.dialhub.steps.LoginSteps;
-import com.sites.dialhub.steps.dashboard.CreateUserSteps;
-import com.sites.dialhub.steps.dashboard.DashboardSteps;
-import com.sites.dialhub.steps.dashboard.RolesGridSteps;
+import com.sites.dialhub.steps.configuration.CreateUserSteps;
+import com.sites.dialhub.steps.configuration.RolesGridSteps;
+import com.sites.dialhub.steps.configuration.UsersGridSteps;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
@@ -23,23 +24,36 @@ public class CreateUserTest {
 	@Steps
 	public LoginSteps loginSteps;
 	@Steps
-	public DashboardSteps dashboardSteps;
-	@Steps
 	public RolesGridSteps rolesGridSteps;
 	@Steps
 	public CreateUserSteps createUsersteps;
+	@Steps
+	public UsersGridSteps userGridSteps;
+
+	public String baseURL;
+	public String userName;
+	public String userPass;
+
+	public String menuNavigation;
+
+	@Before
+	public void dataSetup() {
+
+		baseURL = "https://dialhub-staging.urnbag.com";
+		userName = "admin";
+		userPass = "pepsicola";
+
+		menuNavigation = "Configuration > Users > Create user";
+	}
 
 	@Test
 	public void createUser() {
-		loginSteps.openDialHub("https://dialhub-staging.urnbag.com");
-		loginSteps.enterUsername("admin");
-		loginSteps.enterPassword("pepsicola");
+		loginSteps.openDialHub(baseURL);
+		loginSteps.enterUsername(userName);
+		loginSteps.enterPassword(userPass);
 		loginSteps.hitSignInButton();
 
-		rolesGridSteps.hoverMenuNavigation("Configuration");
-		rolesGridSteps.hoverMenuNavigation("Users");
-		rolesGridSteps.selectMenuItem("Create user");
-
+		userGridSteps.navigateToSiteLocation(menuNavigation);
 		createUsersteps.enterFirstName("Octavia");
 		createUsersteps.enterLastName("Ghenea Test");
 		createUsersteps.enterUserName("testUserAutomation");

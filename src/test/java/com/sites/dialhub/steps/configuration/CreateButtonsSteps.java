@@ -1,4 +1,4 @@
-package com.sites.dialhub.steps.dashboard;
+package com.sites.dialhub.steps.configuration;
 
 import com.sites.dialhub.pages.buttons.CreateButtonsPage;
 
@@ -18,8 +18,10 @@ public class CreateButtonsSteps {
 		createButtonsPage.selectDependentButton(buttonName);
 	}
 
+	
+	//TODO be consistent in action naming
 	@Step
-	public void selectProperty(String propertyName) {
+	public void selectProperties(String propertyName) {
 		createButtonsPage.selectProperties(propertyName);
 	}
 	

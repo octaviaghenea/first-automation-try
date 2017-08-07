@@ -9,6 +9,8 @@ import net.serenitybdd.core.pages.PageObject;
 
 public class UsersGridPage extends PageObject {
 
+	
+	//TODO move print to PrintUtils and extract data properly
 	public List<WebElement> printUsersGrid() {
 
 		List<WebElement> usersGrid = getDriver().findElements(By.cssSelector("tbody tr"));
@@ -20,7 +22,6 @@ public class UsersGridPage extends PageObject {
 			String roleName = userNow.findElement(By.cssSelector("td:nth-child(3)")).getText();
 			String editAction = userNow.findElement(By.cssSelector("td:nth-child(4) a.edit")).getText();
 			String disableAction = userNow.findElement(By.cssSelector("td:nth-child(4) a.remove")).getText();
-			
 			
 			System.out.println("ID: " + userID);
 			System.out.println("User: " + userName);

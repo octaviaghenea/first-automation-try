@@ -1,4 +1,4 @@
-package com.sites.dialhub.steps.dashboard;
+package com.sites.dialhub.steps.configuration;
 
 import com.sites.dialhub.pages.scripts.CreateScriptsPage;
 
@@ -38,5 +38,8 @@ public class CreateScriptSteps {
 		createScriptsPage.hitCancelButton();
 	}
 	
-	
+	@Step
+	public void verifySuccessMessage() throws InterruptedException {
+		createScriptsPage.verifySuccessMessage();
+	}
 }

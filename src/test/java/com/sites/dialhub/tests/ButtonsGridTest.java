@@ -1,12 +1,13 @@
 package com.sites.dialhub.tests;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import com.sites.dialhub.steps.LoginSteps;
-import com.sites.dialhub.steps.buttons.ButtonsGridSteps;
-import com.sites.dialhub.steps.dashboard.UsersGridSteps;
+import com.sites.dialhub.steps.configuration.ButtonsGridSteps;
+import com.sites.dialhub.steps.configuration.UsersGridSteps;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Managed;
@@ -26,16 +27,29 @@ public class ButtonsGridTest {
 	@Steps
 	public ButtonsGridSteps buttonsGridSteps;
 
+	public String baseURL;
+	public String userName;
+	public String userPass;
+
+	public String menuNavigation;
+
+	@Before
+	public void dataSetup() {
+		baseURL = "https://dialhub-staging.urnbag.com";
+		userName = "admin";
+		userPass = "pepsicola";
+
+		menuNavigation = "Configuration > Buttons > Buttons";
+	}
+
 	@Test
 	public void listButons() {
-		loginSteps.openDialHub("https://dialhub-staging.urnbag.com");
-		loginSteps.enterUsername("admin");
-		loginSteps.enterPassword("pepsicola");
+		loginSteps.openDialHub(baseURL);
+		loginSteps.enterUsername(userName);
+		loginSteps.enterPassword(userPass);
 		loginSteps.hitSignInButton();
 
-		usersGridSteps.hoverMenuNavigation("Configuration");
-		usersGridSteps.hoverMenuNavigation("Buttons");
-		usersGridSteps.selectMenuItem("Buttons");
+		usersGridSteps.navigateToSiteLocation(menuNavigation);
 		buttonsGridSteps.printButtonsGrid();
 
 	}

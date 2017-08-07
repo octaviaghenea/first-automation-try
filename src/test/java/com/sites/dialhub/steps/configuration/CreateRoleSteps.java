@@ -1,4 +1,4 @@
-package com.sites.dialhub.steps.dashboard;
+package com.sites.dialhub.steps.configuration;
 
 import com.sites.dialhub.pages.roles.CreateRolePage;
 
@@ -26,5 +26,10 @@ public class CreateRoleSteps {
 	@Step
 	public void hitCancelButton() {
 		createRolePage.hitCancelButton();
+	}
+	
+	@Step
+	public void verifySuccessMessage() {
+		createRolePage.verifySuccessMessage();
 	}
 }

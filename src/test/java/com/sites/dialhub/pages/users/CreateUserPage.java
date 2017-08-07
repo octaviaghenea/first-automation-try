@@ -44,7 +44,6 @@ public class CreateUserPage extends PageObject {
 	public void selectRole(String role) {
 
 		element(rolesContainer).waitUntilVisible();
-
 		List<WebElement> rolesList = rolesContainer.findElements(By.cssSelector("div label[for]"));
 
 		theFor: for (WebElement roleNow : rolesList) {
@@ -57,29 +56,19 @@ public class CreateUserPage extends PageObject {
 				roleNow.click();
 				break theFor;
 			}
-
 		}
-
 	}
 
 	public void selectDepartment() {
-		
+
 		element(departmentContainer).click();
 		List<WebElement> department = departmentContainer.findElements(By.tagName("option"));
-		
-		for (WebElement departmentNow : department) {
-			
-//			String departmentText = departmentContainer.getText();
-//			System.out.println("Departments are: " + departmentText);
-			
-			if("Family Services".equals(departmentNow.getText())) 
-				departmentNow.click();
-			
-		}
-		//element(departmentContainer.selectByVisibleText("Family Services"));
-		// assertThat(element(departmentContainer).getSelectedVisibleTextValue(),
-		// is("Family Services"));
 
+		for (WebElement departmentNow : department) {
+			if ("Family Services".equals(departmentNow.getText()))
+				departmentNow.click();
+
+		}
 	}
 
 	public void enterFirstName(String firstname) {

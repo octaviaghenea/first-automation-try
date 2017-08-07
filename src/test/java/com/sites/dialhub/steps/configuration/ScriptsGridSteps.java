@@ -1,11 +1,10 @@
-package com.sites.dialhub.steps.dashboard;
+package com.sites.dialhub.steps.configuration;
 
 import java.util.List;
 
-import org.openqa.selenium.WebElement;
-
 import com.sites.dialhub.pages.navigation.NavigationPage;
 import com.sites.dialhub.pages.scripts.ScriptsGridPage;
+import com.sites.dialhub.tools.ScriptsModel;
 
 import net.thucydides.core.annotations.Step;
 
@@ -23,9 +22,7 @@ public class ScriptsGridSteps {
 	public void selectMenuItem(String item) {
 		navigationPage.selectMenuItem(item);
 	}
-
-	@Step
-	public List<WebElement> printScriptsGrid() {
+	public List<ScriptsModel> printScriptsGrid() {
 		return scriptsGridPage.printScriptsGrid();
 	}
 }

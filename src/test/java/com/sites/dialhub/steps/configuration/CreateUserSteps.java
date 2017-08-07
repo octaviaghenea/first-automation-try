@@ -1,4 +1,4 @@
-package com.sites.dialhub.steps.dashboard;
+package com.sites.dialhub.steps.configuration;
 
 import com.sites.dialhub.pages.users.CreateUserPage;
 
@@ -11,19 +11,16 @@ public class CreateUserSteps {
 	@Step
 	public void enterFirstName(String firstname) {
 		createUserPage.enterFirstName(firstname);
-
 	}
 
 	@Step
 	public void enterLastName(String lastname) {
 		createUserPage.enterLastName(lastname);
-
 	}
 
 	@Step
 	public void enterUserName(String username) {
 		createUserPage.enterUserName(username);
-
 	}
 
 	@Step
@@ -45,25 +42,21 @@ public class CreateUserSteps {
 	@Step
 	public void enterPassword(String password) {
 		createUserPage.enterPassword(password);
-
 	}
 
 	@Step
 	public void selectEmailInvitation() {
 		createUserPage.selectEMailInvitation();
-
 	}
 
 	@Step
 	public void hitSaveButton() {
 		createUserPage.hitSaveButton();
-
 	}
 
 	@Step
 	public void hitCancelButton() {
 		createUserPage.hitCancelButton();
-
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.sites.dialhub.steps.dashboard;
+package com.sites.dialhub.steps.configuration;
 
 import java.util.List;
 

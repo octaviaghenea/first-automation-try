@@ -2,6 +2,7 @@ package com.sites.dialhub.pages.roles;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -54,5 +55,14 @@ public class CreateRolePage extends PageObject {
 
 	public void hitCancelButton() {
 		cancelButton.click();
+	}
+
+	public void verifySuccessMessage() {
+		element(".messages.success .message-text").waitUntilVisible();
+		String actual_message = getDriver().findElement(By.cssSelector(".messages.success .message-text")).getText();
+		System.out.println("message is:" + actual_message);
+		String expected_message = "The role was created with success.";
+		Assert.assertEquals(actual_message, expected_message);
+
 	}
 }

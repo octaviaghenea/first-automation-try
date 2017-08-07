@@ -1,11 +1,10 @@
-package com.sites.dialhub.steps.buttons;
+package com.sites.dialhub.steps.configuration;
 
 import java.util.List;
 
-import org.openqa.selenium.WebElement;
-
 import com.sites.dialhub.pages.buttons.ButtonsGridPage;
 import com.sites.dialhub.pages.navigation.NavigationPage;
+import com.sites.dialhub.tools.ButtonsModel;
 
 import net.thucydides.core.annotations.Step;
 
@@ -25,7 +24,7 @@ public class ButtonsGridSteps {
 	}
 
 	@Step
-	public List<WebElement> printButtonsGrid() {
+	public List<ButtonsModel> printButtonsGrid() {
 		return buttonsGridPage.printButtonsGrid();
 	}
 }

@@ -12,6 +12,7 @@ import net.serenitybdd.core.pages.PageObject;
 
 public class RolesGridPage extends PageObject {
 
+	// TODO rename method
 	public List<RolesModel> printRolesGrid() {
 
 		List<WebElement> rolesGrid = getDriver().findElements(By.cssSelector("tbody tr"));
@@ -20,24 +21,19 @@ public class RolesGridPage extends PageObject {
 
 		for (WebElement roleNow : rolesGrid) {
 
-			RolesModel rolesResults = new RolesModel();
+			RolesModel itemNow = new RolesModel();
 
 			String roleID = roleNow.findElement(By.cssSelector("td:nth-child(1)")).getText();
 			String roleName = roleNow.findElement(By.cssSelector("td:nth-child(2)")).getText();
 			String editAction = roleNow.findElement(By.cssSelector("td:nth-child(3) a.edit")).getText();
 			String removeAction = roleNow.findElement(By.cssSelector("td:nth-child(3) a.remove")).getText();
 
-			rolesResults.setRoleID(roleID);
-			rolesResults.setRoleName(roleName);
-			rolesResults.setEditAction(editAction);
-			rolesResults.setRemoveAction(removeAction);
+			System.out.println("ID: " + roleID);
+			System.out.println("NAme: " + roleName);
+			System.out.println("Edit: " + editAction);
+			System.out.println("Remove: " + removeAction);
 
-			// System.out.println("print id: " + roleID);
-			// System.out.println("print role: " + roleName);
-			// System.out.println("print actions: " + editAction);
-			// System.out.println("print actions: " + removeAction);
-
-			results.add(rolesResults);
+			results.add(itemNow);
 
 		}
 
